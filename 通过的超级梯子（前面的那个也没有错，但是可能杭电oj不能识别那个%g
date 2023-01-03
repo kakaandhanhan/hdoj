@@ -1,0 +1,30 @@
+# hdoj
+为了记录自己的做题
+#include <stdio.h>
+#define N 40
+int f(int m, int a[])
+{
+	int i;
+	for (i = 3; i <= m; i++)
+	{
+		a[i] = a[i - 1] + a[i - 2];
+	}
+	return a[m];
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		int m;
+		scanf("%d", &m);
+		int a[N];
+		a[1] = 1;
+		a[2] = 1;
+		printf("%d\n", f(m, a));
+
+	}
+	return 0;
+}
