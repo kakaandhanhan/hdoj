@@ -1,0 +1,60 @@
+#include <stdio.h>
+#define N 100
+void sort(int Ti_s[], int Ti_e[], int n)
+{
+	int i, j;
+	int temp1;
+	int temp2;
+	for (i = 0; i < n - 1; i++)
+	{
+		for (j = i + 1; j < n; j++)
+		{
+			if (Ti_e[i] > Ti_e[j])
+			{
+				temp1 = Ti_e[i];
+				Ti_e[i] = Ti_e[j];
+				Ti_e[j] = temp1;
+				temp2 = Ti_s[i];
+				Ti_s[i] = Ti_s[j];
+				Ti_s[j] = temp2;
+				
+			}
+		}
+	}
+}//按结束时间长短排序
+int count(int Ti_s[], int Ti_e[], int n)
+{
+	int number = 1;
+	int record = 0;
+	int j;
+	for (j = 1; j < n; j++)
+	{
+		if (Ti_s[j] >= Ti_e[record])
+		{
+			number=number+1;
+			record = j;
+		}
+	}
+	return number;
+}
+int main()
+{
+	int n;
+	while (scanf("%d", &n) && n != 0)
+	{
+		getchar();
+		int Ti_s[N];
+		int Ti_e[N];
+		int i;
+		for (i = 0; i < n; i++)
+		{
+			scanf("%d %d", &Ti_s[i], &Ti_e[i]);
+			getchar();
+		}
+		sort(Ti_s, Ti_e, n);
+		int number = 0;
+		number = count(Ti_s, Ti_e, n);
+		printf("%d\n", number);
+	}
+	return 0;
+}
