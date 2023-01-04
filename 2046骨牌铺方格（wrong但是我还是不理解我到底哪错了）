@@ -1,0 +1,23 @@
+# hdoj
+为了记录自己的做题
+#include <stdio.h>
+#define N 50
+int main()
+{
+	int n;
+	long long int a[N+1];
+	a[0] = 0;
+	a[1] = 1;
+	a[2] = 2;
+	int i;
+	for (i = 3; i <= N+1; i++)
+	{
+		a[i] = a[i - 1] + a[i - 2];
+	}
+	while (scanf("%d", &n) != EOF)
+	{
+		printf("%lld\n", a[n]);
+	}
+	
+	return 0;
+}
