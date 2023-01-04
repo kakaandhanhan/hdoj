@@ -1,0 +1,23 @@
+# hdoj
+为了记录自己的做题
+#include <stdio.h>
+#define N 50
+int main()
+{
+	
+		int m;
+		scanf("%d", &m);
+		long long int a[N];
+		a[0] = 0;
+		a[1] = 1;
+		a[2] = 2;
+		a[3] = 2;
+		int i;
+		for (i = 4; i <= m; i++)
+		{
+			a[i] = a[i - 1] + 2 * a[i - 2] ;
+		}
+		printf("%lld\n", 3*a[m]);
+	
+	return 0;
+}
