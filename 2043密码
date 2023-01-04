@@ -1,0 +1,87 @@
+# hdoj
+为了记录自己的做题
+#include <stdio.h>
+#include <string.h>
+#define N 50
+int largeletter(char secret[])
+{
+	int i;
+	for (i = 0; secret[i] != '\0'; i++)
+	{
+		if (secret[i] >= 'A' && secret[i] <= 'Z')
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int littleletter(char secret[])
+{
+	int i;
+	for (i = 0; secret[i] != '\0'; i++)
+	{
+		if (secret[i] >= 'a' && secret[i] <= 'z')
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int number(char secret[])
+{
+	int i;
+	for (i = 0; secret[i] != '\0'; i++)
+	{
+		if (secret[i] >= '0' && secret[i] <= '9')
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int spacial(char secret[])
+{
+	int i;
+	for (i = 0; secret[i] != '\0'; i++)
+	{
+		if (secret[i] == '~' || secret[i] == '!' || secret[i] == '@' || secret[i] == '#' || secret[i] == '$' || secret[i] == '%' || secret[i] == '^')
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+int main()
+{
+	
+	int n;
+	scanf("%d", &n);
+	getchar();
+	int i;
+	for (i = 0; i < n; i++)
+	{
+		char secret[N] = { '\0'};
+		gets(secret);
+		int len;
+		len = strlen(secret);
+		if (len >= 8 && len <= 16)
+		{
+			int flag = 0;
+			flag += largeletter(secret) + littleletter(secret) + number(secret) + spacial(secret);
+			
+			if (flag >= 3)
+			{
+				printf("YES\n");
+			}
+			else
+			{
+				printf("NO\n");
+			}
+		}
+		else
+		{
+			printf("NO\n");
+		}
+	}
+	return 0;
+}
