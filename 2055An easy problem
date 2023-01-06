@@ -1,0 +1,33 @@
+# hdoj
+为了记录自己的做题
+#include <stdio.h>
+int result(char x, int y)
+{
+	if (x >= 'a' && x <= 'z')
+	{
+		x = -(x - 96);
+	}
+	else if (x >= 'A' && x <= 'Z')
+	{
+		x = x - 64;
+	}
+	return (x + y);
+}
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	getchar();
+	int i;
+	for (i = 1; i <= n; i++)
+	{
+		char x;
+		int y;
+		scanf("%c %d", &x, &y);
+		getchar();
+		int m;
+		m = result(x, y);
+		printf("%d\n", m);
+	}
+	return 0;
+}
