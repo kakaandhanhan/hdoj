@@ -1,0 +1,24 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+#include <math.h>
+int main()
+{
+	long n, m;
+	while (scanf("%lld %lld", &n, &m) && (m != 0 || n != 0))
+	{
+		long long t;
+		t = sqrt(2 * m);
+		for (; t >= 1; t--)
+		{
+			long long a;
+			a = (m - t * (t + 1) / 2) / t;
+			if (a * t + t * (t + 1) / 2 == m)
+			{
+				printf("[%lld,%lld]\n", a + 1, a + t);
+			}
+		}
+		printf("\n");
+	}
+	return 0;
+}
