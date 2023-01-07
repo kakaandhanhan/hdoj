@@ -1,0 +1,22 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+int main()
+{
+	long long a, b;
+	while (scanf("%I64X %I64X", &a, &b) != EOF)
+	{
+		long long sum = 0;
+		sum += a + b;
+		if (sum < 0)
+		{
+			sum *= -1;
+			printf("-%I64X\n", sum);
+		}
+		else
+		{
+			printf("%I64X\n", sum);
+		}
+	}
+	return 0;
+}
