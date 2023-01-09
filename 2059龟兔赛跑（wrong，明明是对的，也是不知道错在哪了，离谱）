@@ -1,0 +1,75 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+#define M 100
+int main()
+{
+	int L;//跑道长度
+	int N;//充电站个数
+	int C;//电动车充满电可行驶距离
+	int T;//充电所需要的时间
+	int VR;//兔子跑步速度
+	int VT1;//乌龟开电动车速度
+	int VT2;//乌龟蹬车速度
+	double time1[M];
+	int i;
+	int distance[M];//每一站离跑道的距离
+	distance[0] = 0;
+	int j, k;
+	while (scanf("%d", &L) != EOF)
+	{
+		
+		scanf("%d %d %d %d %d %d", &N, &C, &T, &VR, &VT1, &VT2);
+		
+		
+		for (i = 1; i <= N; i++)
+		{
+			scanf("%d", &distance[i]);
+		}
+		distance[N + 1] = L;
+		//每一站的最短时间
+		time1[0] = 0;
+		for (j = 1; j <= N + 1; j++)
+		{
+			double Tmin =0xffffff;
+			for (k = 0; k < j; k++)
+			{
+				int s;//两个站之间的距离
+				int time;
+				s = distance[j] - distance[k];
+				if (C >= s)
+				{
+					time = (double)s / VT1;
+				}
+				else
+				{
+					time = (double)C / VT1 + (double)(s - C) / VT2;
+				}
+				time += time1[k];
+				if (k)
+				{
+					time += (double)T;
+					if (time < time1[j])
+					{
+						time1[j] = time;
+					}
+				}
+				else
+				{
+					time1[j] = time;
+				}
+				
+			}
+		}
+		if (time1[N + 1] > (double)L / VR)
+		{
+			printf("Good job,rabbit!\n");
+		}
+		else
+		{
+			printf("What a pity rabbit!\n");
+		}
+	}	
+	
+	return 0;
+}
