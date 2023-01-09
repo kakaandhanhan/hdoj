@@ -1,0 +1,38 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	while (n--)
+	{
+		int ball_num;
+		int pscore;
+		int oscore;
+		scanf("%d %d %d", &ball_num, &pscore, &oscore);
+		int max = 0;
+		if (ball_num > 6)
+		{
+			max = (ball_num - 6) + (ball_num - 6) * 7 + 2 + 3 + 4 + 5 + 6 + 7+pscore;
+		}
+		else
+		{
+			int i, j;
+			for (i = 7, j = 1; j <= ball_num; j++, i--)
+			{
+				max += i;
+			}
+			max += pscore;
+
+		}
+		if (max >= oscore)
+		{
+			printf("Yes\n");
+		}
+		else
+		{
+			printf("No\n");
+		}
+	}
+}
