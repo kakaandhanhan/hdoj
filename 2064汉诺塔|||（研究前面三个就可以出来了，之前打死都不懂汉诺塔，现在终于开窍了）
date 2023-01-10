@@ -1,0 +1,21 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+#define N 36
+int main()
+{
+	long long int move_step[N];
+	int n;
+	while (scanf("%d", &n) != EOF)
+	{
+		move_step[0] = 0;
+		move_step[1] = 2;
+		int i;
+		for (i = 2; i <= n; i++)
+		{
+			move_step[i] = 3 * move_step[i - 1] + 2;
+		}
+		printf("%lld\n", move_step[n]);
+	}
+	return 0;
+}
