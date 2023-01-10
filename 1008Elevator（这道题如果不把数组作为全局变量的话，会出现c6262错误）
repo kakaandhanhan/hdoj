@@ -1,0 +1,42 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+#define N 100
+int level[N];
+long long Getresult(int level[], int n)
+{
+	int j;
+	long long time_sum = 0;
+	for (j = 0; j <= n -1; j++)
+	{
+		if (level[j + 1] > level[j])
+		{
+			time_sum += (level[j + 1] - level[j]) * 6;
+		}
+		else
+		{
+			time_sum += (level[j] - level[j + 1]) * 4;
+		}
+	}
+	time_sum += n * 5;
+	return time_sum;
+}
+
+int main()
+{
+	
+	level[0] = 0;
+	int n;
+	while (scanf("%d", &n) && n != 0)
+	{
+		int i;
+		for (i = 1; i <= n; i++)
+		{
+			scanf("%d", &level[i]);
+		}
+		long long time_sum = 0;
+		time_sum = Getresult(level, n);
+		printf("%lld\n", time_sum);
+	}
+	return 0;
+}
