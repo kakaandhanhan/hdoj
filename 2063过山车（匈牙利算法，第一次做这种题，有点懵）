@@ -1,0 +1,62 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+#define M 500
+int partner[M];
+int boy_flag[M];
+int k, m, n;
+int girl_mind[M][M];
+void scangirl_mind( int k)
+{
+	int i;
+	int girl, boy;
+	for (i = 1; i <= k; i++)
+	{
+		scanf("%d %d", &girl, &boy);
+		girl_mind[girl][boy] = 1;
+	}
+
+}
+
+int find(int i)
+{
+	int p;
+	for (p = 1; p <= n; p++)
+	{
+		if (girl_mind[i][p] == 1 && boy_flag[p] == 0)
+		{
+			boy_flag[p] = 1;
+			if (partner[p] == 0 || find(partner[p]) == 1)
+			{
+				partner[p] = i;
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+int main()
+{
+	
+	while (scanf("%d", &k)&&k!=0)
+	{
+		scanf("%d %d", &m, &n);
+		memset(girl_mind, 0, sizeof(girl_mind));
+		
+		memset(partner, 0, sizeof(partner));
+		
+		scangirl_mind( k);
+		int couple = 0;
+		int i;
+		for (i = 1; i <= m; i++)
+		{
+			memset(boy_flag, 0, sizeof(boy_flag));
+			if (find(i))
+			{
+				couple++;
+			}
+		}
+		printf("%d\n", couple);
+	}
+	return 0;
+}
