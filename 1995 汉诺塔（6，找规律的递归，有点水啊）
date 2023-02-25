@@ -1,0 +1,30 @@
+# hdoj
+HDOJ
+#include <stdio.h>
+long long getmove_times(int planet_number, int planet_order)
+{
+	if (planet_number == planet_order)
+	{
+		return 1;
+	}
+	else
+	{
+		return getmove_times(planet_number - 1, planet_order) * 2;
+	}
+}
+int main()
+{
+	int planet_number;
+	int planet_order;
+	int T;
+	scanf("%d", &T);
+	int i;
+	for (i = 0; i < T; i++)
+	{
+		scanf("%d %d", &planet_number, &planet_order);
+		long long move_times;
+		move_times = getmove_times(planet_number, planet_order);
+		printf("%lld\n", move_times);
+	}
+	return 0;
+}
